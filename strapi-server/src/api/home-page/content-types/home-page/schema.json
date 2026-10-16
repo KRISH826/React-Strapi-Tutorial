@@ -34,6 +34,16 @@
       "type": "string",
       "maxLength": 100,
       "required": true
+    },
+    "aboutus": {
+      "type": "component",
+      "component": "homepage.about-us",
+      "repeatable": true
+    },
+    "pricesection": {
+      "type": "component",
+      "component": "homepage.pricing-section",
+      "repeatable": true
     }
   }
 }

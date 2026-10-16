@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "sections": {
+    "collectionTypes": {
+      "groups": []
+    },
+    "singleTypes": {
+      "groups": [
+        {
+          "parent": null,
+          "name": "home",
+          "id": "grp_1c2c2939352346079a688184",
+          "children": []
+        }
+      ]
+    }
+  }
+}

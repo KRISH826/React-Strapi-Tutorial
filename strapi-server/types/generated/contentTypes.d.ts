@@ -454,6 +454,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    aboutus: Schema.Attribute.Component<'homepage.about-us', true>;
     banner: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     buttonLabel: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -475,6 +476,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
       'api::home-page.home-page'
     > &
       Schema.Attribute.Private;
+    pricesection: Schema.Attribute.Component<'homepage.pricing-section', true>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &

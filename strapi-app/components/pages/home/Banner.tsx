@@ -61,21 +61,16 @@ const Banner = ({ data }: BannerProps) => {
 
   if (loading) {
     return (
-      <section className="relative overflow-hidden bg-background py-16 md:py-24 lg:py-28">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-            <div className="space-y-6 lg:col-span-7 animate-pulse">
-              <div className="h-6 w-36 rounded-full bg-muted" />
-              <div className="h-12 w-3/4 rounded-lg bg-muted" />
-              <div className="space-y-2">
-                <div className="h-4 w-full rounded-md bg-muted" />
-                <div className="h-4 w-5/6 rounded-md bg-muted" />
-              </div>
-              <div className="h-11 w-36 rounded-xl bg-muted" />
+      <section className="relative flex min-h-[80vh] w-full items-center justify-center overflow-hidden bg-muted">
+        <div className="container mx-auto flex flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8">
+          <div className="flex max-w-3xl w-full flex-col items-center space-y-5 animate-pulse">
+            <div className="h-6 w-36 rounded-full bg-muted-foreground/20" />
+            <div className="h-12 w-3/4 rounded-lg bg-muted-foreground/20" />
+            <div className="space-y-2 w-full max-w-xl flex flex-col items-center">
+              <div className="h-4 w-full rounded-md bg-muted-foreground/20" />
+              <div className="h-4 w-5/6 rounded-md bg-muted-foreground/20" />
             </div>
-            <div className="lg:col-span-5">
-              <div className="aspect-4/3 w-full rounded-2xl bg-muted animate-pulse border border-border/40" />
-            </div>
+            <div className="h-11 w-36 rounded-lg bg-muted-foreground/20" />
           </div>
         </div>
       </section>
@@ -83,60 +78,54 @@ const Banner = ({ data }: BannerProps) => {
   }
 
   return (
-    <section className="relative overflow-hidden bg-background py-16 md:py-24 lg:py-28">
-      {/* Decorative ambient gradient glows */}
-      <div className="pointer-events-none absolute -top-40 -left-40 size-96 rounded-full bg-primary/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 -right-40 size-96 rounded-full bg-primary/10 blur-3xl" />
+    <section className="relative flex min-h-[80vh] w-full items-center justify-center overflow-hidden">
+      {/* 100% Background Image */}
+      {imageUrl && (
+        <Image
+          src={imageUrl}
+          alt={
+            content.banner?.alternativeText ||
+            content.title ||
+            "Banner background"
+          }
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      )}
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-          {/* Left Column: Content */}
-          <div className="space-y-6 lg:col-span-7">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-primary">
-              <Sparkles className="size-3.5" />
-              <span>Digital Innovation</span>
-            </div>
+      {/* Professional Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
-            <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-[1.12]">
-              {content.title}
-            </h1>
-
-            <p className="max-w-2xl text-base font-normal leading-relaxed text-muted-foreground sm:text-lg lg:text-xl">
-              {content.description}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Button
-                size="lg"
-                className="group h-12 cursor-pointer gap-2 rounded-xl px-6 text-base font-semibold shadow-md shadow-primary/25 transition-all hover:shadow-lg hover:shadow-primary/35"
-              >
-                <span>{content.buttonLabel || "Read More"}</span>
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </div>
+      {/* Centered Content (Horizontally and Vertically) */}
+      <div className="relative z-10 container mx-auto flex flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8">
+        <div className="flex max-w-3xl flex-col items-center space-y-5">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-medium text-white">
+            <Sparkles className="size-3.5" />
+            <span>Digital Innovation</span>
           </div>
 
-          {/* Right Column: Hero Image Card */}
-          <div className="lg:col-span-5">
-            <div className="group relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-border/60 bg-muted shadow-2xl transition-all duration-300 hover:border-border">
-              {imageUrl ? (
-                <Image
-                  src={imageUrl}
-                  alt={content.banner?.alternativeText || content.title || "Banner image"}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  priority
-                  unoptimized
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground">
-                  No Banner Image
-                </div>
-              )}
-              {/* Subtle overlay gradient */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
-            </div>
+          {/* Title */}
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-tight">
+            {content.title}
+          </h1>
+
+          {/* Description */}
+          <p className="max-w-2xl text-base sm:text-lg font-normal text-white/90 leading-relaxed">
+            {content.description}
+          </p>
+
+          {/* Clean & Simple Button */}
+          <div className="pt-2">
+            <Button
+              className="bg-white text-black hover:bg-white/90 h-11 px-6 rounded-lg gap-2 text-sm font-medium cursor-pointer"
+            >
+              <span>{content.buttonLabel || "Read More"}</span>
+              <ArrowRight className="size-4" />
+            </Button>
           </div>
         </div>
       </div>
